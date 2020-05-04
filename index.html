@@ -4,9 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="draw"></div>
-    <style></style>
+    <canvas id="canvas"></canvas>
+    <!--canvas必须一开始就确实宽高-->
+    <script>
+      let canvas = document.getElementById("canvas");
+      canvas.width = document.documentElement.clientWidth;
+      canvas.height = document.documentElement.clientHeight;
+      var ctx = canvas.getContext("2d");
+      ctx.fillStyle = "black";
+      ctx.strokeStyle = "none";
+      let x = false;
+      canvas.onmousedown = () => {
+        x = true;
+      };
+      canvas.onmousemove = (e) => {
+        if (x === true) {
+          ctx.beginPath();
+          ctx.arc(e.clientX, e.clientY, 10, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.fill();
+        } else {
+          console.log("社么也不做");
+        }
+      };
+
+      canvas.onmouseup = () => {
+        x = false;
+      };
+    </script>
   </body>
 </html>
